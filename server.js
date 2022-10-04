@@ -8,6 +8,8 @@ const db = require('./db')
 const PORT = process.env.PORT || 3001
 
 const app = express()
+
+app.use(cors())
 app.use(bodyParser.json())
 app.use(
   bodyParser.urlencoded({
@@ -32,8 +34,6 @@ app.use(function (err, req, res, next) {
 app.use(express.json())
 
 app.use('/api', routes)
-
-app.use(cors())
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
